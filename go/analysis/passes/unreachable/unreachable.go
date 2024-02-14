@@ -87,6 +87,7 @@ func (d *deadState) findLabels(stmt ast.Stmt) {
 		*ast.GoStmt,
 		*ast.IncDecStmt,
 		*ast.ReturnStmt,
+		*ast.TryStmt,
 		*ast.SendStmt:
 		// no statements inside
 
@@ -215,6 +216,7 @@ func (d *deadState) findDead(stmt ast.Stmt) {
 		*ast.EmptyStmt,
 		*ast.GoStmt,
 		*ast.IncDecStmt,
+		*ast.TryStmt,
 		*ast.SendStmt:
 		// no control flow
 

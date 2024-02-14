@@ -33,7 +33,7 @@ func TestIdleTimeout(t *testing.T) {
 
 	ctx := context.Background()
 
-	try := func(d time.Duration) (longEnough bool) {
+	tryc := func(d time.Duration) (longEnough bool) {
 		listener, err := jsonrpc2.NetListener(ctx, "tcp", "localhost:0", jsonrpc2.NetListenOptions{})
 		if err != nil {
 			t.Fatal(err)
@@ -134,7 +134,7 @@ func TestIdleTimeout(t *testing.T) {
 	d := 1 * time.Millisecond
 	for {
 		t.Logf("testing with idle timeout %v", d)
-		if !try(d) {
+		if !tryc(d) {
 			d *= 2
 			continue
 		}

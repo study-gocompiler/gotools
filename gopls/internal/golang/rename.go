@@ -924,7 +924,7 @@ func renameImports(ctx context.Context, snapshot *cache.Snapshot, mp *metadata.P
 				fileScope := pkg.GetTypesInfo().Scopes[f.File]
 
 				localName := string(newName)
-				try := 0
+				tryc := 0
 
 				// Keep trying with fresh names until one succeeds.
 				//
@@ -933,8 +933,8 @@ func renameImports(ctx context.Context, snapshot *cache.Snapshot, mp *metadata.P
 				// So the retry loop should be around renameObj, and we shouldn't
 				// bother with scopes here.
 				for fileScope.Lookup(localName) != nil || pkgScope.Lookup(localName) != nil {
-					try++
-					localName = fmt.Sprintf("%s%d", newName, try)
+					tryc++
+					localName = fmt.Sprintf("%s%d", newName, tryc)
 				}
 
 				// renameObj detects various conflicts, including:
